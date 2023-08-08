@@ -6,7 +6,6 @@ export default function NavLayout({children}) {
     
     <NavBar />
     {children}
-
     </div>
   )
 }
