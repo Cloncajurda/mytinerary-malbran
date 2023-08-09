@@ -49,6 +49,7 @@ export default function Carousel({data}) {
             src={each.photo} 
             alt={each.id} 
             text={each.city}
+            id={each.id}
           />
         ))}
       </div>

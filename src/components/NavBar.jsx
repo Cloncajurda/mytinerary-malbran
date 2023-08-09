@@ -1,4 +1,5 @@
-import { useState } from "react"
+import { useState } from "react";
+import {Link as Anchor} from "react-router-dom";
 
 export default function NavBar() {
   let [show, setShow] = useState(false)
@@ -15,25 +16,25 @@ export default function NavBar() {
         onClick={()=>setShow(!show)
         }
       >
-        <path 
-          strokeLinecap="round" 
-          strokeLinejoin="round" 
-          d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" 
-        />
+      <path 
+        strokeLinecap="round" 
+        strokeLinejoin="round" 
+        d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" 
+      />
       </svg>
         {show ? (
-      <div className="flex m-8">
-        <p className="p-2 bg-blue rounded-xl w-[100px] text-center mx-1 cursor-pointer">
-          Home
-        </p>
-        <p className="p-2 bg-blue rounded-xl w-[100px] text-center mx-1 cursor-pointer">
-          Sign In
-        </p>
-        <p className="p-2 bg-blue rounded-xl w-[100px] text-center mx-1 cursor-pointer">
-          Sign Up
-        </p>
-      </div>
-      ):(null)}
+          <div className="flex m-8">
+            <Anchor to='./Home' className="p-2 bg-blue rounded-xl w-[100px] text-center mx-1 cursor-pointer">
+              Home
+            </Anchor>
+            <Anchor to='./signin' className="p-2 bg-blue rounded-xl w-[100px] text-center mx-1 cursor-pointer">
+              Sign In
+            </Anchor>
+            <Anchor to='./cities' className="p-2 bg-blue rounded-xl w-[100px] text-center mx-1 cursor-pointer">
+              Cities
+            </Anchor>
+          </div>
+        ):(null)}
     </header>
   )
 }
