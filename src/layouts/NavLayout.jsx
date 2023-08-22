@@ -8,4 +8,4 @@ export default function NavLayout({children}) {
     {children}
     </div>
   )
-}
+  }
