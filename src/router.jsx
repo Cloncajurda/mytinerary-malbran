@@ -1,11 +1,11 @@
 import {createBrowserRouter} from "react-router-dom";
-import Home from "./Home";
+import Home from "./pages/Home";
 import MainLayout from "./layouts/MainLayout";
-import SingIn from "./SingIn";
-import Cities from "./Cities";
-import CityDetail from "./CityDetail";
+import SingIn from "./pages/SignIn";
+import Cities from "./pages/Cities";
+import CityDetail from "./pages/CityDetail";
 import NavLayout from "./layouts/NavLayout";
-import NotFound from "./NotFound";
+import NotFound from "./pages/NotFound";
 
 const router = createBrowserRouter([
    { 
