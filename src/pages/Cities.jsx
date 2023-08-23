@@ -10,7 +10,7 @@ export default function Cities() {
   useEffect(
     ()=> {
       axios(apiUrl+'Cities?city='+text.current.value)
-        .then(res=>console.log(res.data.response))
+        .then(res=>setCities(res.data.response)) 
         .catch(err=>console.log(err))
     },[]
   )
