@@ -49,7 +49,7 @@ export default function Carousel({data}) {
             src={each.photo} 
             alt={each.id} 
             text={each.city}
-            id={each.id}
+            id={each._id}
           />
         ))}
       </div>
@@ -64,5 +64,5 @@ export default function Carousel({data}) {
       </button>
     </div>
   </div>
-)
+);
 }

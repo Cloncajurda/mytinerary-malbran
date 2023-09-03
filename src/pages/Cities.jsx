@@ -1,28 +1,48 @@
 import {useState, useEffect,useRef} from 'react'
-import axios from 'axios'
-import apiUrl from '../apiUrl'
-import CardCity from '../components/CardCity'
+import CardCity from "../components/CardCity.jsx";
+import { useSelector, useDispatch } from "react-redux";
+import city_actions from "../store/actions/cities";
+import NavLayout from '../layouts/NavLayout';
+import CardPolaroid from '../components/CardPolaroid.jsx';
+const { read_cities } = city_actions;
 
 export default function Cities() {
-  const [cities,setCities] =useState([])
-  const [reEffect, setReEffect] = useState(true)
-  const text = useRef()
-  useEffect(
-    ()=> {
-      axios(apiUrl+'Cities?city='+text.current.value)
-        .then(res=>setCities(res.data.response)) 
-        .catch(err=>console.log(err))
-    },[]
-  )
-  function handleFilter(){
+  const cities = useSelector((store) => store.cities.cities);
+  const [reEffect, setReEffect] = useState(true);
+  const text = useRef();
+  const dispatch = useDispatch();
+  console.log(cities);
+  useEffect(() => {
+    dispatch(read_cities({ text: text.current?.value }));
+  }, [reEffect]);
+  function handleFilter() {
     console.log(text.current.value);
-    setReEffect(!reEffect)
+    setReEffect(!reEffect);
   }
   return (
-    <>
-    <input ref={text} type="text" name="text" id="text" ononKeyUp={handleFilter}/>
-      {cities.map(each=> <CardCity key={each.id} src={each.photo} alt={each._id} text={each.city} id={each._id}/>)}
-    </>
-  
-  )
+    <NavLayout>
+    <article className="bg-blue-200 flex grow flex-col justify-start items-center">
+      <input
+        ref={text}
+        type="text"
+        name="text"
+        id="text"
+        onKeyUp={handleFilter}
+        placeholder="Search city"
+        className="w-[200px] p-4 m-10 bg-gray-200 appearance-none border-2 border-black-200 rounded py-1 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-black-500"
+      />
+      <section className="flex flex-wrap justify-evenly mb-2">
+        {cities.map((each) => (
+          <CardCity
+            key={each._id}
+            src={each.photo}
+            alt={each._id}
+            text={each.city}
+            id={each._id}
+          />
+        ))}
+      </section>
+    </article>
+    </NavLayout>
+  );
 }

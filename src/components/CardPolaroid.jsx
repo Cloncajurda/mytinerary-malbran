@@ -8,5 +8,5 @@ export default function CardPolaroid({src,alt,text,id}) {
                 <p className="text-[15px]">{text}</p>
             </div>
         </Anchor>
-    )
+    );
 }
