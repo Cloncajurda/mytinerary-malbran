@@ -31,9 +31,9 @@ export default function Carousel({data}) {
   }
 
   return (
-    <div className="flex justify-center mt-[100px]">
-    <div id="indicators-carousel" className="flex flex-wrap justify-center items-center">
-      <button type="button" className="m-1 cursor-pointer" data-carousel-prev onClick={prev_slide}>
+    <div className="flex flex-wrap justify-center mt-[100px]">
+    <div id="indicators-carousel" className="flex flex justify-center items-center">
+      <button type="button" className="cursor-pointer" data-carousel-prev onClick={prev_slide}>
         <span className="bg-blue-300 inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none border-2 m-1 border-slate-300">
         <svg className="w-4 h-4 text-white dark:text-gray-800" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
           <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 1 1 5l4 4"/>
@@ -42,7 +42,7 @@ export default function Carousel({data}) {
         </span>
       </button>
 
-      <div className="flex flex-wrap justify-center">
+      <div className="flex flex-wrap justify-center h-full">
         {data.slice(counter,counterTo).map((each, index)=> (
           <CardPolaroid 
             key={index} 

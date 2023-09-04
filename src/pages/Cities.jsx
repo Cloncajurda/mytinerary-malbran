@@ -3,7 +3,6 @@ import CardCity from "../components/CardCity.jsx";
 import { useSelector, useDispatch } from "react-redux";
 import city_actions from "../store/actions/cities";
 import NavLayout from '../layouts/NavLayout';
-import CardPolaroid from '../components/CardPolaroid.jsx';
 const { read_cities } = city_actions;
 
 export default function Cities() {
@@ -29,7 +28,7 @@ export default function Cities() {
         id="text"
         onKeyUp={handleFilter}
         placeholder="Search city"
-        className="w-[200px] p-4 m-10 bg-gray-200 appearance-none border-2 border-black-200 rounded py-1 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-black-500"
+        className="w-[310px] p-4 m-10 bg-gray-200 appearance-none border-2 m-10 border-slate-500 rounded py-1 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-black-500"
       />
       <section className="flex flex-wrap justify-evenly mb-2">
         {cities.map((each) => (
