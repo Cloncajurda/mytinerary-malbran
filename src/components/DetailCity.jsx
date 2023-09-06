@@ -11,7 +11,7 @@ export default function DetailCity({ src, alt, text, id }) {
   console.log(id);
   const dispatch = useDispatch()
   useEffect(
-    ()=>{dispatch(read_itineraries_from_city({city_id }))},
+    ()=>{dispatch(read_itineraries_from_city({city_id}))},
     []
   )
   return (
