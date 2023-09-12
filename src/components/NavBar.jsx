@@ -1,15 +1,42 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {Link as Anchor} from "react-router-dom";
 import Label from "./Label";
 import Display from "./Display";
+import {useSelector, useDispatch} from "react-redux";
+import user_actions from "../store/actions/users";
+
+const {signout}= user_actions
 
 export default function NavBar() {
+  const navigate = useNavigate();
   let [show, setShow] = useState(false)
+  let photo = useSelector((store) => store.users.user?.photo);
+  let dispatch = useDispatch();
   let options = [
-    {to: "/", title: "Home", color: "#4F46E5"},
-    {to: "/cities", title: "Cities", color: "#4F46E5"},
-    {to: "/signin", title: "Log In", backgroundColor: "#4F46E5", color: "white"}
-  ]
+    {to: "/", title: "Home", show:true},
+    {to: "/cities", title: "Cities", show:true},
+    {
+      to: "/signin",
+      title: "Log In",
+      show: photo ? false : true,
+    },
+    {
+      to: "/profile",
+      title: "Profile",
+      show: photo ? true : false,
+    },
+    {
+      title: "Sign Out",
+      show: photo ? true : false,
+      onClick: () => {
+        dispatch(signout());
+        navigate("/");
+      },
+    }
+  ];
+  let name = useSelector(store=>store.users.user?.name)
+  console.log(name)
   return (
     <header className="h-[50px] bg-blue-300 flex items-center text-white">
       <svg 
@@ -33,11 +60,14 @@ export default function NavBar() {
       {/* {show ? <Display options={options}/> : null} */} {/* if else */}
       {show && <Display options={options}/>} {/* if */}
       <div className="w-full flex justify-between items-center">
-        <h1 className="hidden text-[20px]
+        <h1 className="hidden text-[15px]
         md:flex p-3">
-          MyTinerary
+         - Welcome To MyTinerary -     <span className="text-blue-900 h-[30px] text-[20px] px-2 hover:bg-gray-100  w-[100px] flex justify-center items-center mx-1"> {name}</span>
         </h1>
+        
         <Label options={options} />
+
+        
       </div>
 
 

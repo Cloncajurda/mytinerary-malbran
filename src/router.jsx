@@ -7,23 +7,23 @@ import CityDetail from "./pages/CityDetail"
 import MainLayout from "./layouts/MainLayout"
 import NotFound from "./pages/NotFound"
 import Itineraries from "./pages/Itineraries"
-import NavLayout from "./layouts/NavLayout"
-import DetailCity from "./components/DetailCity"
+import Profile from "./pages/profile"
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout />,
     children: [
-        { path: "/", element: <Home /> },
-        { path: "/index", element: <Home />},
-        { path: "/home", element: <Home />},
-        { path: "/signin", element: <SignIn />},
-        { path: "/signup", element: <SignUp />},
-        { path: "/cities", element: <Cities /> },
-        { path: "/city/:city_id", element: <CityDetail />},
-        { path: "/itineraries", element: <Itineraries />},
-        { path: "/*", element: <NotFound />}
+      { path: "/", element: <Home /> },
+      { path: "/index", element: <Home />},
+      { path: "/home", element: <Home />},
+      { path: "/signin", element: <SignIn />},
+      { path: "/signup", element: <SignUp />},
+      { path: "/profile", element: <Profile /> },
+      { path: "/cities", element: <Cities /> },
+      { path: "/city/:city_id", element: <CityDetail />},
+      { path: "/itineraries", element: <Itineraries />},
+      { path: "/*", element: <NotFound />}
         
     ],
   },

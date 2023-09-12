@@ -104,14 +104,14 @@ export default function SignUp() {
         />
         <input
           type="button"
-          className="mb-5 w-full shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded cursor-pointer"
+          className="mb-5 w-full shadow bg-blue-500 hover:bg-blue-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded cursor-pointer"
           value="Sign Up!"
           onClick={handleSignUp}
         />
         <p>
           Already have an account?{" "}
           <Anchor
-            className="text-[20px] font-bold text-purple-500 cursor-pointer"
+            className="text-[20px] font-bold text-blue-500 cursor-pointer"
             to="/signin"
           >
             Sign in!

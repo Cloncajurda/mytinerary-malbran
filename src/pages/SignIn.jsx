@@ -1,20 +1,50 @@
 import { useRef } from "react";
-import { Link as Anchor } from "react-router-dom";
+import { Link as Anchor, useNavigate} from "react-router-dom";
 import NavLayout from "../layouts/NavLayout";
+import {useDispatch, useSelector} from "react-redux";
+import user_actions from "../store/actions/users";
+import Swal from "sweetalert2";
+
+const {signin} = user_actions
 //import axios from "axios";
 //import apiUrl from "../apiUrl";
 
 export default function SignIn() {
+  const navigate = useNavigate();
   const mail_signin = useRef("");
   const password_signin = useRef("");
+  const dispatch= useDispatch()
 
   async function handleSignIn() {
     let data = {
       mail: mail_signin.current.value,
       password: password_signin.current.value,
     };
-    console.log(data);
+    dispatch(signin({ data })); //incorporar accion, reductor y estado
+    console.log(user)
+    .then((res) => {
+      //console.log(res);
+      if (res.payload.token) {
+        Swal.fire({
+          icon: "success",
+          title: "Logged in!",
+        });
+        navigate("/");
+      } else if (res.payload.messages.length > 0) {
+        //let html = res.payload.messages.join('<br>')
+        let html = res.payload.messages
+          .map((each) => `<p>${each}</p>`)
+          .join("");
+        Swal.fire({
+          title: "Something went wrong!",
+          icon: "error",
+          html,
+        })
+      }
+    })
+    .catch((err) => console.log(err));
   }
+  let user = useSelector((store) => store);
   return (
     <NavLayout>
     <form className="flex flex-col items-center justify-center p-[20px] w-[360px] bg-white m-auto">
@@ -39,14 +69,14 @@ export default function SignIn() {
       />
       <input
         type="button"
-        className="mb-[10px] w-full shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded cursor-pointer"
+        className="mb-[10px] w-full shadow bg-blue-500 hover:bg-blue-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded cursor-pointer"
         value="Sign In!"
         onClick={handleSignIn}
       />
       <p>
         Don't you have an account?{" "}
         <Anchor
-          className="text-[20px] font-bold text-purple-500 cursor-pointer"
+          className="text-[20px] font-bold text-blue-500 cursor-pointer"
           to='/signup'
         >
           Sign up!
